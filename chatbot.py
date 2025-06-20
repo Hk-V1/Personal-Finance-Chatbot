@@ -1,4 +1,5 @@
 import json
+from typing import Dict
 from datetime import datetime
 from intent_classifier import IntentClassifier
 from budget_advisor import BudgetAdvisor
