@@ -20,6 +20,28 @@ if 'chatbot' not in st.session_state:
 if 'messages' not in st.session_state:
     st.session_state.messages = []
 
+st.title("Personal Finance Chatbot")
+st.markdown("*AI-powered expense tracking and budget advice*")
+
+user_input = st.chat_input("Type your message here... (e.g., 'I spent $50 on groceries')")
+
+if user_input:
+    st.session_state.messages.append({
+        'type': 'user',
+        'content': user_input,
+        'timestamp': datetime.now()
+    })
+
+    bot_response = st.session_state.chatbot.process_message(user_input)
+
+    st.session_state.messages.append({
+        'type': 'bot',
+        'content': bot_response,
+        'timestamp': datetime.now()
+    })
+
+    st.rerun()
+
 def main():
     st.title("Personal Finance Chatbot")
     st.markdown("*AI-powered expense tracking and budget advice*")
@@ -69,8 +91,6 @@ def main():
                     st.chat_message("user").write(message['content'])
                 else:
                     st.chat_message("assistant").write(message['content'])
-        
-        user_input = st.chat_input("Type your message here... (e.g., 'I spent $50 on groceries')")
         
         if user_input:
             st.session_state.messages.append({
