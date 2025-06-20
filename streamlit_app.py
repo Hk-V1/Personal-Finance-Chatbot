@@ -4,10 +4,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
 import json
-
+from chatbot import FinanceChatbot
 from intent_classifier import IntentClassifier
 from budget_advisor import BudgetAdvisor
-from chatbot.bot import FinanceChatbot
 
 st.set_page_config(
     page_title="Personal Finance Chatbot",
