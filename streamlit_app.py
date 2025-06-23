@@ -9,6 +9,13 @@ from chatbot import FinanceChatbot
 from intent_classifier import IntentClassifier
 from budget_advisor import BudgetAdvisor
 
+st.set_page_config(
+    page_title="MoneyWise - Your Personal Finance Buddy",
+    page_icon="🎯",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 st.markdown("""
 <style>
     /* Import a more personal font */
@@ -174,13 +181,6 @@ LOADING_MESSAGES = [
     "Putting on our accountant hat...",
     "Digging through your expense receipts..."
 ]
-
-st.set_page_config(
-    page_title="MoneyWise - Your Personal Finance Buddy",
-    page_icon="🎯",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 if 'chatbot' not in st.session_state:
     st.session_state.chatbot = FinanceChatbot()
@@ -423,10 +423,9 @@ cols = st.columns(2)
 for i, example in enumerate(examples):
     with cols[i % 2]:
         if st.button(example, key=f"example_{i}", use_container_width=True):
-            # Add to messages
             st.session_state.messages.append({
                 'type': 'user',
-                'content': example.split(' ', 1)[1],  # Remove emoji from actual message
+                'content': example.split(' ', 1)[1], 
                 'timestamp': datetime.now()
             })
             
